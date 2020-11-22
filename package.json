@@ -19,6 +19,7 @@
   "homepage": "https://github.com/aquilesmariani/clase-08#readme",
   "dependencies": {
     "express": "^4.17.1",
-    "lodash.uniq": "^4.5.0"
+    "lodash.uniq": "^4.5.0",
+    "mongodb": "^3.6.3"
   }
 }

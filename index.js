@@ -1,32 +1,33 @@
 const express = require('express');
 const app = express();
+const bodyParser = require("body-parser");
 const port = 3000;
-const getUniqueNumbers = require('./api/index');
+const db = require("./app/models");
+const router = require('./app/routes');
 
+// parse requests of content-type - application/json
+app.use(bodyParser.json());
+
+// parse requests of content-type - application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: true }));
+
+db.mongoose
+  .connect(db.url, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  })
+  .then(() => {
+    console.log("Connected to the database!");
+  })
+  .catch(err => {
+    console.log("Cannot connect to the database!", err);
+    process.exit();
+  });
 
 // Static Files
 app.use(express.static('public'));
 
-// Dynamic render
-app.get('/dynamic', function (req, res) {
-  res.send(`<!DOCTYPE html>
-  <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-  </head>
-  <body>
-    <h1>${new Date()}</h1>
-  </body>
-  </html>`);
-});
-
-// REST API
-app.get('/unique', (req, res) => {
-  res.send(getUniqueNumbers());
-});
-
+app.use(router);
 
 app.listen(port, () => {
   console.log(`Radium app listening at http://localhost:${port}`);

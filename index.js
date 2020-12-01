@@ -26,7 +26,6 @@ db.mongoose
 
 // Static Files
 app.use(express.static('public'));
-
 app.use(router);
 
 app.listen(port, () => {

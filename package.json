@@ -5,6 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
+    "lint": "eslint .",
+    "prettier": "prettier --write .",
+    "postinstall": "husky install",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -20,8 +23,11 @@
   "dependencies": {
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
-    "lodash.uniq": "^4.5.0",
-    "mongodb": "^3.6.3",
     "mongoose": "^5.10.15"
+  },
+  "devDependencies": {
+    "eslint": "^7.14.0",
+    "husky": "^5.0.4",
+    "prettier": "2.2.1"
   }
 }

@@ -4,7 +4,13 @@ const Building = db.building;
 // Create and Save a new Building
 exports.create = (req, res) => {
   // Validate request
-  if (!req.body.fullName || !req.body.address || !req.body.phone || !req.body.boilers|| !req.body.id) {
+  if (
+    !req.body.fullName ||
+    !req.body.address ||
+    !req.body.phone ||
+    !req.body.boilers ||
+    !req.body.id
+  ) {
     res.status(400).send({ message: "Content can not be empty!" });
     return;
   }
@@ -21,13 +27,13 @@ exports.create = (req, res) => {
   // Save Building in the database
   building
     .save(building)
-    .then(data => {
+    .then((data) => {
       res.send(data);
     })
-    .catch(err => {
+    .catch((err) => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while creating the Building."
+          err.message || "Some error occurred while creating the Building.",
       });
     });
 };
@@ -35,32 +41,32 @@ exports.create = (req, res) => {
 // Retrieve all Buildings from the database.
 exports.findAll = (req, res) => {
   Building.find({})
-    .then(data => {
+    .then((data) => {
       res.send(data);
     })
-    .catch(err => {
+    .catch((err) => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while retrieving buildings."
+          err.message || "Some error occurred while retrieving buildings.",
       });
     });
 };
 
 // Find a single Building with an id
 exports.findOne = (req, res) => {
-  Building.findOne({id: req.params.id})
-    .then(data => {
+  Building.findOne({ id: req.params.id })
+    .then((data) => {
       if (!data) {
         return res.status(404).send({
-          message: `Building with id ${req.params.id} was not found`
-        })
+          message: `Building with id ${req.params.id} was not found`,
+        });
       }
-      res.send(data)
+      res.send(data);
     })
-    .catch(err => {
+    .catch((err) => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while retrieving building."
+          err.message || "Some error occurred while retrieving building.",
       });
     });
 };
@@ -69,43 +75,46 @@ exports.findOne = (req, res) => {
 exports.update = (req, res) => {
   if (!req.body) {
     return res.status(400).send({
-      message: "Data to update can not be empty!"
+      message: "Data to update can not be empty!",
     });
   }
   // Validate request
-  if (!req.body.fullName || !req.body.address || !req.body.phone || !req.body.boilers|| !req.body.id) {
+  if (
+    !req.body.fullName ||
+    !req.body.address ||
+    !req.body.phone ||
+    !req.body.boilers ||
+    !req.body.id
+  ) {
     res.status(400).send({ message: "Content can not be empty!" });
     return;
   }
 
   const id = req.params.id;
 
-  Building.findOneAndUpdate({id}, req.body, { useFindAndModify: false })
-    .then(data => {
+  Building.findOneAndUpdate({ id }, req.body, { useFindAndModify: false })
+    .then((data) => {
       if (!data) {
         res.status(404).send({
-          message: `Cannot update Building with id=${id}. Maybe Building was not found!`
+          message: `Cannot update Building with id=${id}. Maybe Building was not found!`,
         });
       } else res.send({ message: "Building was updated successfully." });
     })
-    .catch(err => {
+    .catch(() => {
       res.status(500).send({
-        message: "Error updating Building with id=" + id
+        message: "Error updating Building with id=" + id,
       });
     });
-  
 };
 
 // Delete a Building with the specified id in the request
 exports.delete = (req, res) => {
   const id = req.params.id;
-  Building.findOneAndRemove({id}, { useFindAndModify: false })
-    .then(data =>
-      res.send({ message: "Building was removed successfully." })
-    )
-    .catch(err => {
+  Building.findOneAndRemove({ id }, { useFindAndModify: false })
+    .then(() => res.send({ message: "Building was removed successfully." }))
+    .catch(() => {
       res.status(500).send({
-        message: "Error removing Building with id=" + id
+        message: "Error removing Building with id=" + id,
       });
     });
 };

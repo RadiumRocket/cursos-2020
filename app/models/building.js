@@ -1,4 +1,4 @@
-module.exports = mongoose => {
+module.exports = (mongoose) => {
   const Building = mongoose.model(
     "building",
     mongoose.Schema(
@@ -7,10 +7,10 @@ module.exports = mongoose => {
         fullName: String,
         address: String,
         phone: String,
-        boilers: []
+        boilers: [],
       },
       { timestamps: true }
     )
-  )
-  return Building
+  );
+  return Building;
 };

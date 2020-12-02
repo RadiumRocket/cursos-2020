@@ -1,0 +1,90 @@
+{
+	"info": {
+		"_postman_id": "53fa8b8a-309f-4585-a396-b23ed9f30745",
+		"name": "CaldAR",
+		"description": "Esto es la documentación de la API REST de CaldAR. Acá vas a poder encontrar todas las request necesarias para interactuar con la API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Buildings - Get all",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"boilers\": [\n        15,\n        5,\n        19\n    ],\n    \"id\": 201,\n    \"address\": \"No address\",\n    \"fullName\": \"damian\",\n    \"phone\": \"123123123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/buildings",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"buildings"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Buildings - Get one building",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/buildings/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"buildings",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Buildings - Create new building",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"boilers\": [\n        15,\n        5,\n        65,\n        9,\n        94,\n        12,\n        75,\n        19\n    ],\n    \"id\": 999,\n    \"address\": \"2424 Melody Alley\",\n    \"fullName\": \"Quigley-Goyette\",\n    \"phone\": \"581-880-6866\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/buildings",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"buildings"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
